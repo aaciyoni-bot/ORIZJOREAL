@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان</title>
 
     <!-- SEO -->
@@ -20,13 +20,13 @@
     <meta property="og:title" content="ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان">
     <meta property="og:description" content="عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. 0% ضريبة شراء، إقامة عبر الاستثمار، وإدارة أملاك 10 سنوات.">
     <meta property="og:url" content="https://aaciyoni-bot.github.io/ORIZJOREAL/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1613490908236-4700f5317789?auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image" content="https://aaciyoni-bot.github.io/ORIZJOREAL/images/hero-baku.jpg">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان">
     <meta name="twitter:description" content="عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. 0% ضريبة شراء وإدارة أملاك 10 سنوات.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1613490908236-4700f5317789?auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:image" content="https://aaciyoni-bot.github.io/ORIZJOREAL/images/hero-baku.jpg">
 
     <!-- Favicon (inline SVG — sapphire/crystal "O") -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23020617'/%3E%3Ctext x='50' y='72' font-size='64' font-weight='900' text-anchor='middle' font-family='Arial' fill='%2338BDF8'%3EO%3C/text%3E%3C/svg%3E">
@@ -101,8 +101,31 @@
         /* Reveal-on-scroll for content sections */
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Fluid type scale */
+        .h-hero { font-size: clamp(2.25rem, 6vw, 4.5rem); line-height: 1.12; }
+        .h-section { font-size: clamp(1.9rem, 4vw, 3rem); }
+
+        /* Accents */
+        .text-gradient { background: linear-gradient(120deg, #7dd3fc 0%, #38BDF8 45%, #1E40AF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .gold-line { background: linear-gradient(90deg, transparent, #D4AF37, transparent); height: 1px; }
+        .hero-vignette { background: radial-gradient(120% 90% at 85% 15%, transparent 0%, rgba(2,6,23,0.55) 70%, rgba(2,6,23,0.9) 100%); }
+        ::selection { background: rgba(56,189,248,0.30); color: #fff; }
+
+        /* Button micro-interaction */
+        .btn-primary { transition: transform .18s ease, box-shadow .25s ease, background-color .2s ease; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-primary:active { transform: translateY(0); }
+
+        /* Accessible focus */
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid #38BDF8; outline-offset: 2px; border-radius: 6px;
+        }
+
         @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
             .reveal, .fade-in, .wa-float { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+            .btn-primary:hover, .glass-card:hover { transform: none; }
         }
     </style>
 </head>
@@ -148,14 +171,29 @@
             <div class="hidden lg:flex gap-8 text-sm font-bold text-slate-300">
                 <a href="#about-group" class="hover:text-crystal transition">فرص أذربيجان</a>
                 <a href="#mega-projects" class="hover:text-crystal transition">المشاريع الكبرى</a>
+                <a href="#legal-tax" class="hover:text-crystal transition">الضرائب والإقامة</a>
                 <a href="#management" class="hover:text-crystal transition">إدارة الأملاك</a>
                 <a href="#projects" class="hover:text-crystal transition">المشاريع</a>
             </div>
-            <div class="flex gap-2 md:gap-4">
-                <button onclick="document.getElementById('tour').scrollIntoView({behavior: 'smooth'})" class="hidden md:block bg-sapphire hover:bg-blue-700 text-white px-6 py-2.5 text-sm font-bold transition shadow-lg shadow-blue-900/50 rounded-md">حجز جولة VIP</button>
+            <div class="flex gap-2 md:gap-4 items-center">
+                <button onclick="document.getElementById('tour').scrollIntoView({behavior: 'smooth'})" class="hidden md:block btn-primary bg-sapphire hover:bg-blue-700 text-white px-6 py-2.5 text-sm font-bold shadow-lg shadow-blue-900/50 rounded-md">حجز جولة VIP</button>
                 <button onclick="toggleLoginModal()" class="border border-slate-700 text-slate-300 hover:bg-white hover:text-black px-4 py-2 md:px-6 md:py-2.5 text-xs font-bold transition flex items-center gap-2 rounded-md">
                     <i class="fa-solid fa-lock"></i> <span class="hidden md:inline">دخول الشركاء</span>
                 </button>
+                <button onclick="toggleMobileMenu()" aria-label="القائمة" class="lg:hidden text-white w-10 h-10 flex items-center justify-center rounded-md border border-slate-700 hover:bg-white/5 transition">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800 bg-slate-950/98 backdrop-blur-md">
+            <div class="px-5 py-4 flex flex-col gap-1 text-slate-200 font-bold">
+                <a href="#about-group" onclick="toggleMobileMenu()" class="py-3 px-3 rounded-lg hover:bg-white/5 hover:text-crystal transition flex items-center gap-3"><i class="fa-solid fa-earth-asia text-crystal w-5"></i> فرص أذربيجان</a>
+                <a href="#mega-projects" onclick="toggleMobileMenu()" class="py-3 px-3 rounded-lg hover:bg-white/5 hover:text-crystal transition flex items-center gap-3"><i class="fa-solid fa-city text-crystal w-5"></i> المشاريع الكبرى</a>
+                <a href="#legal-tax" onclick="toggleMobileMenu()" class="py-3 px-3 rounded-lg hover:bg-white/5 hover:text-crystal transition flex items-center gap-3"><i class="fa-solid fa-scale-balanced text-crystal w-5"></i> الضرائب والإقامة</a>
+                <a href="#management" onclick="toggleMobileMenu()" class="py-3 px-3 rounded-lg hover:bg-white/5 hover:text-crystal transition flex items-center gap-3"><i class="fa-solid fa-building-shield text-crystal w-5"></i> إدارة الأملاك</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="py-3 px-3 rounded-lg hover:bg-white/5 hover:text-crystal transition flex items-center gap-3"><i class="fa-solid fa-building text-crystal w-5"></i> المشاريع</a>
+                <a href="#tour" onclick="toggleMobileMenu()" class="mt-2 py-3.5 px-3 rounded-lg bg-sapphire text-white text-center hover:bg-blue-700 transition flex items-center justify-center gap-2"><i class="fa-solid fa-plane-departure"></i> حجز جولة المستثمرين VIP</a>
             </div>
         </div>
     </nav>
@@ -166,16 +204,18 @@
         <!-- Hero Section -->
         <section class="relative min-h-[90vh] md:min-h-screen flex items-center justify-start overflow-hidden pt-20">
             <div class="absolute inset-0 z-0">
-                <img id="publicHeroImg" src="https://images.unsplash.com/photo-1613490908236-4700f5317789?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80" alt="Luxury Mansion" class="w-full h-full object-cover object-center scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
+                <img id="publicHeroImg" src="images/hero-baku.jpg" fetchpriority="high" alt="أفق مدينة باكو عاصمة أذربيجان وخليج بحر قزوين" class="w-full h-full object-cover object-center scale-105 animate-[pulse_20s_ease-in-out_infinite]" />
                 <div class="absolute inset-0 hero-gradient"></div>
+                <div class="absolute inset-0 hero-vignette"></div>
             </div>
 
             <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 w-full py-12 md:py-20">
-                <div class="max-w-4xl">
-                    <div class="inline-block bg-blue-950/50 border border-blue-500/30 text-crystal px-4 py-1.5 rounded-full text-[10px] md:text-sm font-bold tracking-widest mb-4 md:mb-6 backdrop-blur-sm">
+                <div class="max-w-4xl reveal visible">
+                    <div class="inline-flex items-center gap-2 bg-blue-950/50 border border-blue-500/30 text-crystal px-4 py-1.5 rounded-full text-[10px] md:text-sm font-bold tracking-widest mb-4 md:mb-6 backdrop-blur-sm">
+                        <span class="w-1.5 h-1.5 rounded-full bg-crystal animate-pulse"></span>
                         استثمارات عقارية عالمية من مجموعة ORIZIS
                     </div>
-                    <h1 id="publicHeroTitle" class="text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-4 md:mb-6 drop-shadow-2xl">
+                    <h1 id="publicHeroTitle" class="h-hero font-bold leading-tight mb-4 md:mb-6 drop-shadow-2xl">
                         عقارات بمستوى مؤسسي.<br>
                         <span class="text-crystal">متاحة الآن ابتداءً من 50,000 دولار.</span>
                     </h1>
@@ -183,10 +223,10 @@
                         امتلك عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. فرصتك للاندماج في اقتصاد متنامٍ، والاستفادة من ضريبة شراء 0%، والحصول على إقامة أجنبية، على بُعد ساعتين طيران فقط من عمان.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#tour" class="bg-sapphire text-white px-8 py-4 rounded-md font-bold text-sm md:text-base hover:bg-blue-700 transition duration-300 shadow-[0_0_30px_rgba(30,64,175,0.4)] text-center flex items-center justify-center gap-3">
-                            انضم إلى جولة المستثمرين VIP <i class="fa-solid fa-arrow-left"></i>
+                        <a href="#tour" class="btn-primary bg-sapphire text-white px-8 py-4 rounded-md font-bold text-sm md:text-base hover:bg-blue-700 shadow-[0_0_30px_rgba(30,64,175,0.4)] text-center flex items-center justify-center gap-3 group">
+                            انضم إلى جولة المستثمرين VIP <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="#mega-projects" class="bg-transparent border border-white text-white px-8 py-4 rounded-md font-bold text-sm md:text-base hover:bg-white hover:text-black transition duration-300 text-center flex items-center justify-center">
+                        <a href="#mega-projects" class="bg-transparent border border-white/70 text-white px-8 py-4 rounded-md font-bold text-sm md:text-base hover:bg-white hover:text-black transition duration-300 text-center flex items-center justify-center">
                             استكشف المشاريع الكبرى
                         </a>
                     </div>
@@ -244,7 +284,7 @@
                     </div>
                     <div class="lg:w-1/2 relative">
                         <div class="absolute inset-0 bg-sapphire/20 blur-3xl rounded-full"></div>
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Property Management" class="relative rounded-2xl border border-slate-800 shadow-2xl z-10">
+                        <img src="images/sea-breeze-2.jpg" alt="إدارة وتأجير العقارات في منتجع فاخر" loading="lazy" class="relative rounded-2xl border border-slate-800 shadow-2xl z-10">
                     </div>
                 </div>
             </div>
@@ -275,7 +315,7 @@
                         </ul>
                     </div>
                     <div class="lg:w-1/2 h-64 lg:h-auto relative">
-                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Sea Breeze Luxury Resort" class="w-full h-full object-cover">
+                        <img src="images/sea-breeze.jpg" alt="منتجع Sea Breeze الفاخر على بحر قزوين" loading="lazy" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-r from-[#020617] via-transparent to-transparent"></div>
                     </div>
                 </div>
@@ -283,7 +323,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
                         <div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition duration-500">
-                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="White City Architecture" class="w-full h-full object-cover">
+                            <img src="images/white-city.jpg" alt="العمارة الفاخرة في حي Baku White City" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/20 z-10"></div>
                         <div class="relative z-20 h-full flex flex-col justify-end">
@@ -296,7 +336,7 @@
                     </div>
                     <div class="glass-card rounded-2xl p-8 relative overflow-hidden group">
                         <div class="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition duration-500">
-                            <img src="https://images.unsplash.com/photo-1542224566-6e85f2e6772f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Gabala Mountain Scenery" class="w-full h-full object-cover">
+                            <img src="images/gabala.jpg" alt="جبال غابالا المكسوة بالثلوج في أذربيجان" loading="lazy" class="w-full h-full object-cover">
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/20 z-10"></div>
                         <div class="relative z-20 h-full flex flex-col justify-end">
@@ -307,6 +347,65 @@
                             </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal, Tax & Residency Section -->
+        <section id="legal-tax" class="py-16 md:py-24 bg-luxury-dark border-t border-slate-900 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: radial-gradient(circle at 20% 30%, #38BDF8 0%, transparent 40%), radial-gradient(circle at 85% 70%, #1E40AF 0%, transparent 45%);"></div>
+            <div class="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+                <div class="text-center mb-12 md:mb-16">
+                    <h3 class="text-crystal text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-3">Legal &amp; Tax Framework</h3>
+                    <h2 class="h-section font-bold text-white mb-5">الضرائب والملكية والإقامة</h2>
+                    <div class="gold-line w-24 mx-auto mb-6"></div>
+                    <p class="text-gray-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                        إطار قانوني واضح ومستقر للمستثمر العربي. ملكية خاصة تامة، نظام ضريبي جذّاب، ومسار محدّد للحصول على إقامة عبر الاستثمار — كل ذلك بمرافقة قانونية متخصصة.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="glass-card rounded-2xl p-7 md:p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-950/50 border border-blue-500/30 flex items-center justify-center mb-5">
+                            <i class="fa-solid fa-percent text-2xl text-crystal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">ميزة ضريبية كبيرة</h3>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span><strong class="text-white">0% ضريبة شراء</strong> — دون أي رسوم عند تملّك العقار.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span><strong class="text-white">15% ضريبة أرباح</strong> على الربح الرأسمالي فقط عند البيع.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>بيئة استثمارية صديقة للمستثمرين الأجانب.</span></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card rounded-2xl p-7 md:p-8">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-950/50 border border-blue-500/30 flex items-center justify-center mb-5">
+                            <i class="fa-solid fa-file-signature text-2xl text-crystal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">ملكية تامة (طابو)</h3>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span><strong class="text-white">Freehold</strong> — تسجيل ملكية خاصة كاملة باسم المشتري.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>لا قيود على تملّك الأجانب للعقارات المبنية.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>مرافقة محامٍ وتدقيق قانوني (Due Diligence) لكل صفقة.</span></li>
+                        </ul>
+                    </div>
+                    <div class="glass-card rounded-2xl p-7 md:p-8 relative">
+                        <span class="absolute top-5 left-5 bg-gold/20 text-gold text-[10px] font-bold px-2.5 py-1 rounded-full border border-gold/30">الأكثر طلباً</span>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-950/50 border border-blue-500/30 flex items-center justify-center mb-5">
+                            <i class="fa-solid fa-passport text-2xl text-crystal"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">إقامة عبر الاستثمار</h3>
+                        <ul class="space-y-3 text-sm text-gray-300">
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>تصريح إقامة ابتداءً من استثمار <strong class="text-white ltr-dir">~$60,000</strong>.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>تجديد سنوي وإمكانية شمول أفراد العائلة.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check text-crystal mt-1"></i><span>إمكانية فتح حساب بنكي محلي والحصول على تمويل.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 md:mt-10 glass-card rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 border border-blue-900/40">
+                    <i class="fa-solid fa-circle-info text-crystal text-xl shrink-0"></i>
+                    <p class="text-xs md:text-sm text-gray-400 leading-relaxed">
+                        المعلومات المعروضة لأغراض التعريف العام ولا تُعد استشارة ضريبية أو قانونية أو توصية استثمارية. تخضع شروط الضرائب والإقامة للأنظمة المحلية وللظروف الشخصية. تُقدَّم التفاصيل الكاملة والمواءمة الفردية بمرافقة مستشارينا خلال الجولة.
+                    </p>
                 </div>
             </div>
         </section>
@@ -422,7 +521,7 @@
                                         <input type="tel" id="clientPhoneInput" placeholder="رقم الهاتف المحمول *" required class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-crystal transition text-right text-sm md:text-base" dir="ltr">
                                     </div>
                                     <div>
-                                        <input type="email" placeholder="البريد الإلكتروني *" required class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-crystal transition text-right text-sm md:text-base ltr-dir">
+                                        <input type="email" id="clientEmailInput" placeholder="البريد الإلكتروني *" required class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-crystal transition text-right text-sm md:text-base ltr-dir">
                                     </div>
                                 </div>
                             </div>
@@ -445,10 +544,40 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-[#01030a] py-12 border-t border-slate-900 text-center px-4">
+        <footer class="bg-[#01030a] pt-14 md:pt-20 pb-8 border-t border-slate-900 px-4">
             <div class="max-w-7xl mx-auto">
-                <div class="text-xl md:text-2xl font-black tracking-widest mb-4 ltr-dir"><span class="text-sapphire">ORIZJO</span><span class="text-crystal">REAL</span></div>
-                <p class="text-gray-500 text-xs md:text-sm">© 2026 ORIZIS GROUP. جميع الحقوق محفوظة.</p>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-12">
+                    <div class="md:col-span-5">
+                        <div class="text-2xl md:text-3xl font-black tracking-widest mb-4 ltr-dir"><span class="text-sapphire">ORIZJO</span><span class="text-crystal">REAL</span></div>
+                        <p class="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+                            بوابتك للاستثمار العقاري الفاخر في أذربيجان. عقارات مدرة للدخل، ملكية تامة، ومرافقة كاملة — من الوفد الأول وحتى تسليم المفتاح.
+                        </p>
+                        <div class="flex gap-3">
+                            <a id="footerWa" href="https://wa.me/962790000000" target="_blank" rel="noopener" aria-label="واتساب" class="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-green-400 hover:bg-green-500 hover:text-white transition"><i class="fa-brands fa-whatsapp text-lg"></i></a>
+                            <a href="tel:+962790000000" aria-label="اتصال" class="w-11 h-11 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-crystal hover:bg-sapphire hover:text-white transition"><i class="fa-solid fa-phone text-base"></i></a>
+                        </div>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h4 class="text-white font-bold text-sm mb-4 tracking-wide">روابط سريعة</h4>
+                        <ul class="space-y-3 text-sm text-gray-400">
+                            <li><a href="#about-group" class="hover:text-crystal transition">فرص أذربيجان</a></li>
+                            <li><a href="#mega-projects" class="hover:text-crystal transition">المشاريع الكبرى</a></li>
+                            <li><a href="#legal-tax" class="hover:text-crystal transition">الضرائب والإقامة</a></li>
+                            <li><a href="#projects" class="hover:text-crystal transition">محفظة العقارات</a></li>
+                        </ul>
+                    </div>
+                    <div class="md:col-span-4">
+                        <h4 class="text-white font-bold text-sm mb-4 tracking-wide">جاهز للانطلاق؟</h4>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">انضم إلى وفد المستثمرين القادم برحلة مباشرة من عمّان.</p>
+                        <a href="#tour" class="btn-primary inline-flex items-center gap-2 bg-sapphire text-white px-6 py-3 rounded-md font-bold text-sm hover:bg-blue-700">
+                            حجز جولة VIP <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-3 text-center">
+                    <p class="text-gray-500 text-xs">© 2026 ORIZIS GROUP. جميع الحقوق محفوظة.</p>
+                    <p class="text-gray-600 text-[11px] max-w-lg">المحتوى المعروض لا يُعد استشارة استثمارية أو ضريبية أو توصية بالشراء. كل استثمار ينطوي على مخاطر.</p>
+                </div>
             </div>
         </footer>
     </div>
@@ -806,12 +935,12 @@
 
         // Curated showcase inventory — shown only when the cloud CMS has no properties yet, so the portfolio is never empty.
         const defaultShowcaseProperties = [
-            { firestoreId: 'demo-sb-1', category: 'seabreeze', tag: 'Sea Breeze', title: 'شقق Caspian View الفاخرة', location: 'منتجع Sea Breeze، باكو', price: '$68,000', yield: '~9% سنوياً', desc: 'شقق حديثة بإطلالة مباشرة على بحر قزوين داخل مجتمع Sea Breeze المغلق. تشمل مسابح، شواطئ خاصة، وإدارة تأجير سياحي لمدة 10 سنوات.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80' }] },
-            { firestoreId: 'demo-sb-2', category: 'seabreeze', tag: 'إطلالة بانورامية', title: 'بنتهاوس Half Moon Bay', location: 'جزيرة نصف القمر، Sea Breeze', price: '$142,000', yield: '~11% سنوياً', desc: 'بنتهاوس بتصميم مؤسسي على الجزيرة الاصطناعية، مع تراس خاص وخدمات فندقية. أعلى العوائد في مواسم الذروة السياحية.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80' }] },
-            { firestoreId: 'demo-urban-1', category: 'urban', tag: 'وسط باكو', title: 'شقق Baku White City', location: 'وايت سيتي، باكو', price: '$95,000', yield: '~8% سنوياً', desc: 'المركز الذكي الجديد لمدينة باكو ووجهة الدبلوماسيين والأجانب. سيولة عالية وطلب مستمر على الإيجار طويل المدى.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80' }] },
-            { firestoreId: 'demo-urban-2', category: 'urban', tag: 'برج فاخر', title: 'برج Port Baku السكني', location: 'المرفأ، باكو', price: '$120,000', yield: '~8.5% سنوياً', desc: 'وحدات فاخرة في أرقى أبراج باكو مع خدمات كونسيرج ومرافق راقية. استثمار متحفظ ضد التضخم في قلب العاصمة.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80' }] },
-            { firestoreId: 'demo-villa-1', category: 'villas', tag: 'طبيعة القوقاز', title: 'فيلات Gabala الجبلية', location: 'غابالا، أذربيجان', price: '$180,000', yield: '~10% سنوياً', desc: 'فيلات خاصة في الملاذ المناخي المفضل لسياح الخليج، قرب منتجع التزلج والمنتجعات. عائد مرتفع في مواسم الذروة.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80' }] },
-            { firestoreId: 'demo-villa-2', category: 'villas', tag: 'ملكية تامة', title: 'شاليهات Tufandag المطلة', location: 'تلال توفانداغ، غابالا', price: '$155,000', yield: '~9.5% سنوياً', desc: 'شاليهات خشبية فاخرة بإطلالة على الجبال والغابات، مثالية للتأجير السياحي قصير المدى عبر Airbnb وBooking.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1200&q=80' }] }
+            { firestoreId: 'demo-sb-1', category: 'seabreeze', tag: 'Sea Breeze', title: 'شقق Caspian View الفاخرة', location: 'منتجع Sea Breeze، باكو', price: '$68,000', yield: '~9% سنوياً', desc: 'شقق حديثة بإطلالة مباشرة على بحر قزوين داخل مجتمع Sea Breeze المغلق. تشمل مسابح، شواطئ خاصة، وإدارة تأجير سياحي لمدة 10 سنوات.', media: [{ type: 'image', url: 'images/sea-breeze.jpg' }] },
+            { firestoreId: 'demo-sb-2', category: 'seabreeze', tag: 'إطلالة بانورامية', title: 'بنتهاوس Half Moon Bay', location: 'جزيرة نصف القمر، Sea Breeze', price: '$142,000', yield: '~11% سنوياً', desc: 'بنتهاوس بتصميم مؤسسي على الجزيرة الاصطناعية، مع تراس خاص وخدمات فندقية. أعلى العوائد في مواسم الذروة السياحية.', media: [{ type: 'image', url: 'images/sea-breeze-2.jpg' }] },
+            { firestoreId: 'demo-urban-1', category: 'urban', tag: 'وسط باكو', title: 'شقق Baku White City', location: 'وايت سيتي، باكو', price: '$95,000', yield: '~8% سنوياً', desc: 'المركز الذكي الجديد لمدينة باكو ووجهة الدبلوماسيين والأجانب. سيولة عالية وطلب مستمر على الإيجار طويل المدى.', media: [{ type: 'image', url: 'images/white-city.jpg' }] },
+            { firestoreId: 'demo-urban-2', category: 'urban', tag: 'برج فاخر', title: 'برج Port Baku السكني', location: 'المرفأ، باكو', price: '$120,000', yield: '~8.5% سنوياً', desc: 'وحدات فاخرة في أرقى أبراج باكو مع خدمات كونسيرج ومرافق راقية. استثمار متحفظ ضد التضخم في قلب العاصمة.', media: [{ type: 'image', url: 'images/hero-baku.jpg' }] },
+            { firestoreId: 'demo-villa-1', category: 'villas', tag: 'طبيعة القوقاز', title: 'فيلات Gabala الجبلية', location: 'غابالا، أذربيجان', price: '$180,000', yield: '~10% سنوياً', desc: 'فيلات خاصة في الملاذ المناخي المفضل لسياح الخليج، قرب منتجع التزلج والمنتجعات. عائد مرتفع في مواسم الذروة.', media: [{ type: 'image', url: 'images/gabala.jpg' }] },
+            { firestoreId: 'demo-villa-2', category: 'villas', tag: 'ملكية تامة', title: 'شاليهات Tufandag المطلة', location: 'تلال توفانداغ، غابالا', price: '$155,000', yield: '~9.5% سنوياً', desc: 'شاليهات خشبية فاخرة بإطلالة على الجبال والغابات، مثالية للتأجير السياحي قصير المدى عبر Airbnb وBooking.', media: [{ type: 'image', url: 'images/gabala.jpg' }] }
         ];
         
         // FLIGHTS FROM AMMAN (Jordan)
@@ -827,6 +956,7 @@
             initFirebaseListeners();
             initCalendar();
             initScrollReveal();
+            initUiChrome();
 
             const urlParams = new URLSearchParams(window.location.search);
             const refId = urlParams.get('broker_ref');
@@ -835,10 +965,47 @@
             if(mgrRef) localStorage.setItem('orizis_mgr_ref_jo', mgrRef);
         }
 
+        // Navbar shadow on scroll, Escape closes overlays, mobile menu
+        function initUiChrome() {
+            const nav = document.getElementById('navbar');
+            const onScroll = () => {
+                if (window.scrollY > 24) nav.classList.add('shadow-2xl', 'shadow-black/40');
+                else nav.classList.remove('shadow-2xl', 'shadow-black/40');
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllOverlays(); });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('mobileMenuIcon');
+            const isOpen = !menu.classList.contains('hidden');
+            if (isOpen) {
+                menu.classList.add('hidden');
+                if (icon) icon.className = 'fa-solid fa-bars text-lg';
+                document.body.style.overflow = '';
+            } else {
+                menu.classList.remove('hidden');
+                if (icon) icon.className = 'fa-solid fa-xmark text-lg';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeAllOverlays() {
+            ['propertyModal','loginModal','quickEditModal'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.classList.contains('modal-visible')) { el.classList.remove('modal-visible'); el.classList.add('modal-hidden'); }
+            });
+            document.body.style.overflow = '';
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) toggleMobileMenu();
+        }
+
         function initScrollReveal() {
             // Applied via JS so content is always visible if JS/observer is unavailable.
             if (!('IntersectionObserver' in window)) return;
-            const targets = document.querySelectorAll('#about-group, #management > div, #mega-projects .glass-card, #projects > div > div, #tour .grid > div');
+            const targets = document.querySelectorAll('#about-group, #management > div, #mega-projects .glass-card, #legal-tax .text-center, #legal-tax .grid > div, #projects > div > div, #tour .grid > div');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -905,6 +1072,8 @@
 
         function applyGlobalSettings() {
             document.getElementById('wa-btn').href = 'https://wa.me/' + globalSettings.whatsapp;
+            const footerWa = document.getElementById('footerWa');
+            if (footerWa) footerWa.href = 'https://wa.me/' + globalSettings.whatsapp;
             document.getElementById('publicBasePriceDisplay').innerText = globalSettings.tourPrice + '$';
             calculateLivePrice();
 
@@ -984,16 +1153,22 @@
             e.preventDefault();
             const clientName = document.getElementById('clientNameInput').value;
             const clientPhone = document.getElementById('clientPhoneInput').value;
+            const clientEmail = document.getElementById('clientEmailInput').value;
             const flightDate = document.getElementById('flightDateInput').value;
             const pax = document.getElementById('paxCount').value;
             const brokerId = document.getElementById('publicBrokerSelect').value;
             const flightInfo = document.getElementById('flightSelect').value;
-            
+
+            if(!flightDate) { showNotification('يجب اختيار تاريخ المغادرة', true); return; }
             if(!flightInfo) { showNotification('يجب اختيار رحلة الطيران', true); return; }
+
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.classList.add('opacity-60', 'cursor-wait'); }
 
             db.collection("bookings_jo").add({
                 clientName: clientName,
                 clientPhone: clientPhone,
+                clientEmail: clientEmail,
                 tourDate: flightDate,
                 flightInfo: flightInfo,
                 pax: parseInt(pax),
@@ -1001,13 +1176,17 @@
                 timestamp: new Date().toISOString(),
                 status: 'قيد الانتظار'
             }).then(() => {
-                showNotification('تم استلام طلبك لرحلة الاستثمار بنجاح.');
+                showNotification('تم استلام طلبك لرحلة الاستثمار بنجاح. سنتواصل معك قريباً.');
                 e.target.reset();
                 document.getElementById('flightDateInput').value = '';
                 document.getElementById('returnDateDisplay').innerText = 'يتم الحساب تلقائياً';
                 document.getElementById('flightSelect').innerHTML = '<option value="" disabled selected>اختر تاريخ المغادرة أولاً</option>';
                 document.getElementById('flightSelect').disabled = true;
                 calculateLivePrice();
+            }).catch(() => {
+                showNotification('حدث خطأ أثناء الإرسال، حاول مرة أخرى', true);
+            }).finally(() => {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.classList.remove('opacity-60', 'cursor-wait'); }
             });
         }
 
