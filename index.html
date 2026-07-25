@@ -1,9 +1,36 @@
+<!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان</title>
-    
+
+    <!-- SEO -->
+    <meta name="description" content="ORIZJOREAL — استثمر في عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. 0% ضريبة شراء، إقامة عبر الاستثمار، وإدارة أملاك لمدة 10 سنوات. على بُعد ساعتين طيران من عمّان.">
+    <meta name="keywords" content="عقارات أذربيجان, استثمار عقاري, باكو, Sea Breeze, غابالا, إقامة استثمارية, عقارات فاخرة, ORIZIS, الأردن, الخليج">
+    <meta name="author" content="ORIZIS GROUP">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#020617">
+    <link rel="canonical" href="https://aaciyoni-bot.github.io/ORIZJOREAL/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:site_name" content="ORIZJOREAL">
+    <meta property="og:title" content="ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان">
+    <meta property="og:description" content="عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. 0% ضريبة شراء، إقامة عبر الاستثمار، وإدارة أملاك 10 سنوات.">
+    <meta property="og:url" content="https://aaciyoni-bot.github.io/ORIZJOREAL/">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1613490908236-4700f5317789?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ORIZJOREAL | الاستثمار العقاري الفاخر في أذربيجان">
+    <meta name="twitter:description" content="عقارات فاخرة ومدرة للدخل في أذربيجان بملكية تامة. 0% ضريبة شراء وإدارة أملاك 10 سنوات.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1613490908236-4700f5317789?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Favicon (inline SVG — sapphire/crystal "O") -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23020617'/%3E%3Ctext x='50' y='72' font-size='64' font-weight='900' text-anchor='middle' font-family='Arial' fill='%2338BDF8'%3EO%3C/text%3E%3C/svg%3E">
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -64,6 +91,19 @@
         }
         .wa-float { animation: float-wa 3s ease-in-out infinite; }
         .ltr-dir { direction: ltr; display: inline-block; }
+
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.6s ease-out both; }
+
+        /* Reveal-on-scroll for content sections */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .fade-in, .wa-float { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden" onload="initApp()">
@@ -762,7 +802,17 @@
         let managersDB = [];
         let bookingsDB = [];
         let globalSettings = { whatsapp: '962790000000', tourPrice: 870, broadcast: '' };
-        let currentUser = null; 
+        let currentUser = null;
+
+        // Curated showcase inventory — shown only when the cloud CMS has no properties yet, so the portfolio is never empty.
+        const defaultShowcaseProperties = [
+            { firestoreId: 'demo-sb-1', category: 'seabreeze', tag: 'Sea Breeze', title: 'شقق Caspian View الفاخرة', location: 'منتجع Sea Breeze، باكو', price: '$68,000', yield: '~9% سنوياً', desc: 'شقق حديثة بإطلالة مباشرة على بحر قزوين داخل مجتمع Sea Breeze المغلق. تشمل مسابح، شواطئ خاصة، وإدارة تأجير سياحي لمدة 10 سنوات.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80' }] },
+            { firestoreId: 'demo-sb-2', category: 'seabreeze', tag: 'إطلالة بانورامية', title: 'بنتهاوس Half Moon Bay', location: 'جزيرة نصف القمر، Sea Breeze', price: '$142,000', yield: '~11% سنوياً', desc: 'بنتهاوس بتصميم مؤسسي على الجزيرة الاصطناعية، مع تراس خاص وخدمات فندقية. أعلى العوائد في مواسم الذروة السياحية.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80' }] },
+            { firestoreId: 'demo-urban-1', category: 'urban', tag: 'وسط باكو', title: 'شقق Baku White City', location: 'وايت سيتي، باكو', price: '$95,000', yield: '~8% سنوياً', desc: 'المركز الذكي الجديد لمدينة باكو ووجهة الدبلوماسيين والأجانب. سيولة عالية وطلب مستمر على الإيجار طويل المدى.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80' }] },
+            { firestoreId: 'demo-urban-2', category: 'urban', tag: 'برج فاخر', title: 'برج Port Baku السكني', location: 'المرفأ، باكو', price: '$120,000', yield: '~8.5% سنوياً', desc: 'وحدات فاخرة في أرقى أبراج باكو مع خدمات كونسيرج ومرافق راقية. استثمار متحفظ ضد التضخم في قلب العاصمة.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80' }] },
+            { firestoreId: 'demo-villa-1', category: 'villas', tag: 'طبيعة القوقاز', title: 'فيلات Gabala الجبلية', location: 'غابالا، أذربيجان', price: '$180,000', yield: '~10% سنوياً', desc: 'فيلات خاصة في الملاذ المناخي المفضل لسياح الخليج، قرب منتجع التزلج والمنتجعات. عائد مرتفع في مواسم الذروة.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80' }] },
+            { firestoreId: 'demo-villa-2', category: 'villas', tag: 'ملكية تامة', title: 'شاليهات Tufandag المطلة', location: 'تلال توفانداغ، غابالا', price: '$155,000', yield: '~9.5% سنوياً', desc: 'شاليهات خشبية فاخرة بإطلالة على الجبال والغابات، مثالية للتأجير السياحي قصير المدى عبر Airbnb وBooking.', media: [{ type: 'image', url: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1200&q=80' }] }
+        ];
         
         // FLIGHTS FROM AMMAN (Jordan)
         const flightOptionsAMM = [
@@ -776,7 +826,8 @@
         function initApp() {
             initFirebaseListeners();
             initCalendar();
-            
+            initScrollReveal();
+
             const urlParams = new URLSearchParams(window.location.search);
             const refId = urlParams.get('broker_ref');
             const mgrRef = urlParams.get('manager_ref');
@@ -784,23 +835,46 @@
             if(mgrRef) localStorage.setItem('orizis_mgr_ref_jo', mgrRef);
         }
 
+        function initScrollReveal() {
+            // Applied via JS so content is always visible if JS/observer is unavailable.
+            if (!('IntersectionObserver' in window)) return;
+            const targets = document.querySelectorAll('#about-group, #management > div, #mega-projects .glass-card, #projects > div > div, #tour .grid > div');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            targets.forEach(el => { el.classList.add('reveal'); observer.observe(el); });
+        }
+
         function initFirebaseListeners() {
+            applyGlobalSettings(); // Apply defaults immediately so WhatsApp/price work before the cloud responds.
+
             db.collection("settings_jo").doc("global").onSnapshot((doc) => {
-                if (doc.exists) {
-                    globalSettings = { ...globalSettings, ...doc.data() };
-                    applyGlobalSettings();
-                }
-            });
+                if (doc.exists) globalSettings = { ...globalSettings, ...doc.data() };
+                applyGlobalSettings();
+            }, () => applyGlobalSettings());
 
             db.collection("properties_jo").onSnapshot((snapshot) => {
                 propertiesDB = [];
                 snapshot.forEach((doc) => { propertiesDB.push({ firestoreId: doc.id, ...doc.data() }); });
+                if (propertiesDB.length === 0) propertiesDB = defaultShowcaseProperties.slice(); // Graceful fallback until real inventory is added via CMS.
                 const loader = document.getElementById('projectsLoader');
                 if(loader) loader.classList.add('hidden');
                 document.getElementById('projectsContainer').classList.remove('hidden');
                 renderCollection('all');
                 renderAdminProperties();
                 if(currentUser && currentUser.role === 'admin') updateAdminStats();
+            }, () => {
+                // On read failure, still show curated showcase so the section is never blank.
+                propertiesDB = defaultShowcaseProperties.slice();
+                const loader = document.getElementById('projectsLoader');
+                if(loader) loader.classList.add('hidden');
+                document.getElementById('projectsContainer').classList.remove('hidden');
+                renderCollection('all');
             });
 
             db.collection("managers_jo").onSnapshot((snapshot) => {
@@ -1152,7 +1226,7 @@
         function updateAdminStats() {
             if(document.getElementById('admin-stat-brokers')) document.getElementById('admin-stat-brokers').innerText = brokerDatabase.length;
             if(document.getElementById('admin-stat-bookings')) document.getElementById('admin-stat-bookings').innerText = bookingsDB.length;
-            if(document.getElementById('admin-stat-properties')) document.getElementById('admin-stat-properties').innerText = propertiesDB.length;
+            if(document.getElementById('admin-stat-properties')) document.getElementById('admin-stat-properties').innerText = realProperties().length;
         }
 
         function deleteEntity(collection, id) {
@@ -1239,11 +1313,15 @@
             });
         }
 
+        function realProperties() { return propertiesDB.filter(p => !String(p.firestoreId).startsWith('demo-')); }
+
         function renderAdminProperties() {
             const tbody = document.getElementById('admin-prop-del-table');
             if(!tbody) return;
             tbody.innerHTML = '';
-            propertiesDB.forEach(p => {
+            const list = realProperties();
+            if (list.length === 0) { tbody.innerHTML = '<tr><td class="p-4 text-slate-500 text-center text-xs">لا توجد عقارات مضافة بعد. تُعرض عقارات استعراضية للزوّار حتى تضيف مخزونك الفعلي.</td></tr>'; return; }
+            list.forEach(p => {
                 tbody.innerHTML += `
                     <tr><td class="p-2 font-bold">${p.title}</td><td class="p-2 text-gray-400 ltr-dir">${p.price}</td>
                     <td class="p-2 text-left"><button onclick="deleteEntity('properties_jo', '${p.firestoreId}')" class="text-red-500"><i class="fa-solid fa-trash"></i> حذف</button></td></tr>
@@ -1359,7 +1437,7 @@
                     </div>
                 </div>
                 <div class="glass-card p-4 rounded-xl border border-slate-800 mb-8">
-                    <h3 class="text-sm font-bold text-crystal mb-2"><i class="fa-solid fa-link ml-2"></i> رابط צירוף סוכנים لشبكتك</h3>
+                    <h3 class="text-sm font-bold text-crystal mb-2"><i class="fa-solid fa-link ml-2"></i> رابط ضمّ الوكلاء لشبكتك</h3>
                     <div class="flex"><input type="text" readonly value="${mgrLink}" class="flex-1 bg-slate-900 p-2 text-xs text-white outline-none rounded-r ltr-dir"><button onclick="navigator.clipboard.writeText('${mgrLink}'); showNotification('تم نسخ الرابط')" class="bg-sapphire text-white px-4 py-2 rounded-l text-xs font-bold">نسخ</button></div>
                 </div>
                 <h3 class="text-xl font-bold mb-4">وكلاء الفريق</h3>
